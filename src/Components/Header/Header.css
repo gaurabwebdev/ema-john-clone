@@ -1,0 +1,16 @@
+.header{
+    height: 80px;
+    background-color: #1C2B35;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header div a {
+    color: #fff;
+    transition: 0.4s ease all;
+}
+
+.header div a:hover {
+    color: #FF9900;
+}
