@@ -2,7 +2,11 @@ import React from "react";
 import "./Product.css";
 
 const Products = (props) => {
-  const { img, name, price, ratings, seller } = props.product;
+  const { handleProduct } = props;
+  // console.log(props);
+  const { img, name, price, ratings, seller, id } = props.product;
+  // console.log(props.product);
+
   return (
     <div>
       <div className="card bg-slate-300 shadow-xl h-auto">
@@ -24,7 +28,10 @@ const Products = (props) => {
             </p>
           </div>
           <div className="card-actions justify-end mt-4">
-            <button className="btn btn-primary">
+            <button
+              onClick={() => handleProduct(props.product)}
+              className="btn btn-primary"
+            >
               <span className="mr-2">Add To Cart</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
