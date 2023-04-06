@@ -53,7 +53,7 @@ const Shop = () => {
               ></Product>
             ))}
         </div>
-        <div className="cart-container bg-slate-900 text-white pl-3">
+        <div className="cart-container bg-slate-900 text-white pl-3 h-96">
           <Cart cartProducts={cartProducts}></Cart>
         </div>
       </div>

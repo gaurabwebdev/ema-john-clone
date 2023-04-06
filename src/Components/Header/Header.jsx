@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../assets/images/Logo.svg";
 import "./Header.css";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -9,10 +10,10 @@ const Header = () => {
         <img src={logo} alt="" />
       </a>
       <div className="flex justify-between items-center gap-5 capitalize">
-        <a href="/order">Order</a>
-        <a href="/order-review">Order Review</a>
-        <a href="/manage-inventory">Manage Inventory</a>
-        <a href="/login">Login</a>
+        <NavLink to={"/"}>Shop</NavLink>
+        <NavLink to={"/order"}>Order</NavLink>
+        <NavLink to={"/inventory"}>Inventory</NavLink>
+        <NavLink to={"/login"}>Login</NavLink>
       </div>
     </nav>
   );
