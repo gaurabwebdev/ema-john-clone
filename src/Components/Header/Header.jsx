@@ -1,14 +1,14 @@
 import React from "react";
 import logo from "../../assets/images/Logo.svg";
 import "./Header.css";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
     <nav className="header py-5 px-24">
-      <a href="index.html">
+      <Link to={"/"}>
         <img src={logo} alt="" />
-      </a>
+      </Link>
       <div className="flex justify-between items-center gap-5 capitalize">
         <NavLink to={"/"}>Shop</NavLink>
         <NavLink to={"/order"}>Order</NavLink>

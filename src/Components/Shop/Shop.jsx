@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { addToDb, getShoppingCart } from "../../utilities/fakedb";
+import {
+  addToDb,
+  deleteShoppingCart,
+  getShoppingCart,
+} from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Products/Product";
 import "./Shop.css";
+import { Link } from "react-router-dom";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -39,6 +44,11 @@ const Shop = () => {
     setCartProducts(cart);
   }, [products]);
 
+  const resetCart = () => {
+    setCartProducts([]);
+    deleteShoppingCart();
+  };
+
   return (
     <>
       <div className="shop-container">
@@ -53,8 +63,28 @@ const Shop = () => {
               ></Product>
             ))}
         </div>
-        <div className="cart-container bg-slate-900 text-white pl-3 h-96">
-          <Cart cartProducts={cartProducts}></Cart>
+        <div className="cart-container bg-slate-900 text-white px-2 h-96">
+          <Cart cartProducts={cartProducts} resetCart={resetCart}>
+            <Link to={"/order"}>
+              <div className="bg-purple-500 mt-2 rounded flex justify-between items-center p-2 text-white">
+                Review Order
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </div>
+            </Link>
+          </Cart>
         </div>
       </div>
 
