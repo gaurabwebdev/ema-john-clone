@@ -1,10 +1,16 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
+
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { userContext } from "../AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
+  const [showpass, setShowPass] = useState(false);
+  const navigate = useNavigate();
   const { login } = useContext(userContext);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = (e) => {
     setError("");
     e.preventDefault();
@@ -14,6 +20,9 @@ const Login = () => {
     login(email, password)
       .then((result) => {
         const loggedInUser = result.user;
+        form.reset();
+        navigate(from, { replace: true });
+
         console.log(loggedInUser);
       })
       .catch((error) => {
@@ -35,13 +44,25 @@ const Login = () => {
             name="email"
             required
           />
-          <input
-            className="input input-bordered input-error w-full max-w-xs"
-            placeholder="Your Password"
-            type="password"
-            name="password"
-            required
-          />
+          <div className="max-w-xs w-full relative">
+            <input
+              className="input input-bordered input-error w-full"
+              placeholder="Your Password"
+              type={showpass ? "text" : "password"}
+              name="password"
+              required
+            />
+            <div
+              className="absolute top-1/4 right-2"
+              onClick={() => setShowPass(!showpass)}
+            >
+              {!showpass ? (
+                <EyeSlashIcon className="w-6 h-6 text-red-400" />
+              ) : (
+                <EyeIcon className="w-6 h-6 text-red-400" />
+              )}
+            </div>
+          </div>
           <input className="btn btn-primary px-5" type="submit" value="login" />
         </form>
         <p className="text-xl mb-6 text-center">
@@ -52,6 +73,9 @@ const Login = () => {
           src="https://i.ibb.co/Rp9CSQy/google-btn.png"
           alt=""
         />
+        {error && (
+          <p className="text-xl text-red-500 mb-6 text-center">{error}</p>
+        )}
       </div>
     </div>
   );

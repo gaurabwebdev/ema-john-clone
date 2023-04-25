@@ -34,6 +34,7 @@ const SignUp = () => {
       .then((result) => {
         const loggedInUser = result.user;
         loggedInUser.displayName = name;
+        form.reset();
         console.log(loggedInUser);
       })
       .catch((error) => {
