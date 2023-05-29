@@ -6,9 +6,10 @@ import { deleteShoppingCart, removeFromDb } from "../../utilities/fakedb";
 
 const Order = () => {
   const products = useLoaderData();
+  console.log(products);
   const [cart, setCart] = useState(products);
   const deleteProduct = (pId) => {
-    const newCart = cart.filter((cartProduct) => cartProduct.id !== pId);
+    const newCart = cart.filter((cartProduct) => cartProduct._id !== pId);
     setCart(newCart);
     removeFromDb(pId);
   };
@@ -21,7 +22,7 @@ const Order = () => {
       <div className="mx-auto mt-16 w-3/4 md:w-2/4">
         {cart.map((product) => (
           <ReviewItem
-            key={product.id}
+            key={product._id}
             product={product}
             deleteProduct={deleteProduct}
           />

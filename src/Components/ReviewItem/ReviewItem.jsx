@@ -1,7 +1,7 @@
 import React from "react";
 
 const ReviewItem = ({ product, deleteProduct }) => {
-  const { img, name, quantity, price, id } = product;
+  const { img, name, quantity, price, _id } = product;
   return (
     <div className="review-item bg-gray-900 my-5 rounded text-white p-3 flex justify-between items-center">
       <div className="flex">
@@ -13,7 +13,7 @@ const ReviewItem = ({ product, deleteProduct }) => {
         </div>
       </div>
       <div
-        onClick={() => deleteProduct(id)}
+        onClick={() => deleteProduct(_id)}
         className="p-2 bg-red-400 rounded-full cursor-pointer"
       >
         <svg

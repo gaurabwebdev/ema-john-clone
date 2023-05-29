@@ -16,7 +16,7 @@ const Shop = () => {
 
   useEffect(() => {
     const loadProducts = async () => {
-      const res = await fetch("products.json");
+      const res = await fetch("http://localhost:5000/products");
       const value = await res.json();
       setProducts(value);
     };
@@ -27,14 +27,14 @@ const Shop = () => {
   const handleProduct = (singleProduct) => {
     const newCart = [...cartProducts, singleProduct];
     setCartProducts(newCart);
-    addToDb(singleProduct.id);
+    addToDb(singleProduct._id);
   };
 
   useEffect(() => {
     const storedCart = getShoppingCart();
     let cart = [];
     for (const id in storedCart) {
-      let addedProduct = products.find((product) => product.id === id);
+      let addedProduct = products.find((product) => product._id === id);
       if (addedProduct) {
         const productQty = storedCart[id];
         addedProduct.quantity = productQty;
@@ -57,7 +57,7 @@ const Shop = () => {
             .slice(0, !showProducts ? 6 : showProducts.length)
             .map((product) => (
               <Product
-                key={product.id}
+                key={product._id}
                 product={product}
                 handleProduct={handleProduct}
               ></Product>
